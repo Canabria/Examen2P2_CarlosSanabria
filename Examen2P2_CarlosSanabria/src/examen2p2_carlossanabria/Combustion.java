@@ -53,7 +53,7 @@ public class Combustion extends Vehiculos{
 
     @Override
     public String toString() {
-        return "Combustion{" + "cilindraje=" + cilindraje + ", cant_cilin=" + cant_cilin + ", consumo=" + consumo + '}';
+        return super.toString()+" Tipo de Vehiculo: Combustion";
     }
     
 }

@@ -53,7 +53,7 @@ public class Electrico extends Vehiculos{
 
     @Override
     public String toString() {
-        return "Electrico{" + "coeficiente=" + coeficiente + ", canti_motor=" + canti_motor + ", tiempo_recarga=" + tiempo_recarga + '}';
+        return super.toString()+"Tipo de Vehiculo: Electrico";
     }
     
 }

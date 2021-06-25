@@ -62,7 +62,7 @@ public class Vehiculos implements Serializable{
 
     @Override
     public String toString() {
-        return "Vehiculos{" + "marca=" + marca + ", modelo=" + modelo + ", vin=" + vin + ", carroceria=" + carroceria + '}';
+        return "Vehiculos: " + "marca: " + marca + ", modelo: " + modelo + ", vin: " + vin + ", tipo de carroceria:" + carroceria;
     }
     
 }

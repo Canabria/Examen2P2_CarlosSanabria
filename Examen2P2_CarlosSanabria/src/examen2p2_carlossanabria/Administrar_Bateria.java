@@ -41,7 +41,7 @@ public class Administrar_Bateria {
         this.archivo = archivo;
     }
 
-    public void setVehiculos(Bateria c) {
+    public void setBateria(Bateria c) {
         listaBateria.add(c);
     }
 

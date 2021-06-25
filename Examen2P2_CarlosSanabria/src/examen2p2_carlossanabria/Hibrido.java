@@ -12,18 +12,22 @@ package examen2p2_carlossanabria;
 public class Hibrido extends Vehiculos{
     private int capaci_m;
     private int cantidad_de_galones;
+    private double precio;
 
-    public Hibrido(int capaci_m, int cantidad_de_galones) {
+    public Hibrido(int capaci_m, int cantidad_de_galones, double precio) {
         this.capaci_m = capaci_m;
         this.cantidad_de_galones = cantidad_de_galones;
+        this.precio = precio;
     }
 
-    public Hibrido(int capaci_m, int cantidad_de_galones, String marca, String modelo, int vin, String carroceria) {
+    public Hibrido(int capaci_m, int cantidad_de_galones, double precio, String marca, String modelo, int vin, String carroceria) {
         super(marca, modelo, vin, carroceria);
         this.capaci_m = capaci_m;
         this.cantidad_de_galones = cantidad_de_galones;
+        this.precio = precio;
     }
 
+   
     public int getCapaci_m() {
         return capaci_m;
     }
@@ -40,9 +44,17 @@ public class Hibrido extends Vehiculos{
         this.cantidad_de_galones = cantidad_de_galones;
     }
 
+    public double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
+
     @Override
     public String toString() {
-        return "Hibrido{" + "capaci_m=" + capaci_m + ", cantidad_de_galones=" + cantidad_de_galones + '}';
+        return super.toString()+"Tipo de Vehiculo: Hibrido";
     }
     
     
