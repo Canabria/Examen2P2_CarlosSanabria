@@ -5,9 +5,14 @@
  */
 package examen2p2_carlossanabria;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -36,9 +41,9 @@ public class JF_Examen2 extends javax.swing.JFrame {
         modelo2.addElement("Electrico");
         CB_TipoMotor.setModel(modelo2);
         DefaultComboBoxModel modelo3= (DefaultComboBoxModel)CB_Vehiculo.getModel();
-        modelo2.addElement("Default");
-        modelo2.addElement("Hibrido");
-        modelo2.addElement("Electrico");
+        modelo3.addElement("Default");
+        modelo3.addElement("Hibrido");
+        modelo3.addElement("Electrico");
         CB_Vehiculo.setModel(modelo3);
     }
 
@@ -72,8 +77,8 @@ public class JF_Examen2 extends javax.swing.JFrame {
         JD_CRUDBateria = new javax.swing.JDialog();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        JT_ListarCarros1 = new javax.swing.JTable();
-        JB_ModificarCarro1 = new javax.swing.JButton();
+        JT_ListarBateria = new javax.swing.JTable();
+        JB_ModificarBateria = new javax.swing.JButton();
         JB_EliminarCarros1 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
@@ -98,7 +103,7 @@ public class JF_Examen2 extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         JL_BateriaEnsamblaje = new javax.swing.JList<>();
         jScrollPane2 = new javax.swing.JScrollPane();
-        JL_CarrosEnsamblados = new javax.swing.JList<>();
+        JL_VehiculosEnsamblados = new javax.swing.JList<>();
         jLabel2 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         JD_Ensamblaje = new javax.swing.JDialog();
@@ -297,7 +302,7 @@ public class JF_Examen2 extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         jLabel5.setText("Administracion Baterias");
 
-        JT_ListarCarros1.setModel(new javax.swing.table.DefaultTableModel(
+        JT_ListarBateria.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -313,16 +318,21 @@ public class JF_Examen2 extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane4.setViewportView(JT_ListarCarros1);
+        jScrollPane4.setViewportView(JT_ListarBateria);
 
-        JB_ModificarCarro1.setText("Modificar");
-        JB_ModificarCarro1.addMouseListener(new java.awt.event.MouseAdapter() {
+        JB_ModificarBateria.setText("Modificar");
+        JB_ModificarBateria.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                JB_ModificarCarro1MouseClicked(evt);
+                JB_ModificarBateriaMouseClicked(evt);
             }
         });
 
         JB_EliminarCarros1.setText("Eliminar");
+        JB_EliminarCarros1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JB_EliminarCarros1MouseClicked(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel6.setText("Listar Bateria");
@@ -405,7 +415,7 @@ public class JF_Examen2 extends javax.swing.JFrame {
                 .addGroup(JD_CRUDBateriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
                     .addGroup(JD_CRUDBateriaLayout.createSequentialGroup()
-                        .addComponent(JB_ModificarCarro1)
+                        .addComponent(JB_ModificarBateria)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(JB_EliminarCarros1))
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 641, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -454,11 +464,11 @@ public class JF_Examen2 extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(JD_CRUDBateriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JB_EliminarCarros1)
-                    .addComponent(JB_ModificarCarro1))
+                    .addComponent(JB_ModificarBateria))
                 .addGap(55, 55, 55))
         );
 
-        JB_EsamblarBaterias.setFont(new java.awt.Font("Times New Roman", 3, 14)); // NOI18N
+        JB_EsamblarBaterias.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         JB_EsamblarBaterias.setText("Ensamblar Baterias");
         JB_EsamblarBaterias.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -466,7 +476,7 @@ public class JF_Examen2 extends javax.swing.JFrame {
             }
         });
 
-        JB_GenerarReporteEnsamblaje.setFont(new java.awt.Font("Times New Roman", 3, 14)); // NOI18N
+        JB_GenerarReporteEnsamblaje.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         JB_GenerarReporteEnsamblaje.setText("Generar Reporte");
         JB_GenerarReporteEnsamblaje.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -474,19 +484,19 @@ public class JF_Examen2 extends javax.swing.JFrame {
             }
         });
 
-        jLabel54.setFont(new java.awt.Font("Times New Roman", 3, 12)); // NOI18N
+        jLabel54.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel54.setText("recuerde seleccionar ambas listas para el ensamblaje");
 
         JL_BateriaEnsamblaje.setModel(new DefaultListModel());
         jScrollPane1.setViewportView(JL_BateriaEnsamblaje);
 
-        JL_CarrosEnsamblados.setModel(new DefaultListModel());
-        jScrollPane2.setViewportView(JL_CarrosEnsamblados);
+        JL_VehiculosEnsamblados.setModel(new DefaultListModel());
+        jScrollPane2.setViewportView(JL_VehiculosEnsamblados);
 
-        jLabel2.setFont(new java.awt.Font("Times New Roman", 3, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel2.setText("Carros");
 
-        jLabel7.setFont(new java.awt.Font("Times New Roman", 3, 14)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel7.setText("Bateria");
 
         javax.swing.GroupLayout JD_MenuSimulacionLayout = new javax.swing.GroupLayout(JD_MenuSimulacion.getContentPane());
@@ -535,12 +545,12 @@ public class JF_Examen2 extends javax.swing.JFrame {
                 .addContainerGap(49, Short.MAX_VALUE))
         );
 
-        jLabel47.setFont(new java.awt.Font("Times New Roman", 3, 14)); // NOI18N
+        jLabel47.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel47.setText("Bareria seleccionada:");
 
         JL_BateriaActual.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
 
-        jLabel48.setFont(new java.awt.Font("Times New Roman", 3, 14)); // NOI18N
+        jLabel48.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel48.setText("Carro seleccionado:");
 
         JL_CarroActual.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
@@ -620,7 +630,7 @@ public class JF_Examen2 extends javax.swing.JFrame {
                 .addComponent(PB_Ensamblaje, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(JB_IniciarEsamblaje, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel13.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
@@ -707,7 +717,7 @@ public class JF_Examen2 extends javax.swing.JFrame {
                 .addContainerGap(35, Short.MAX_VALUE))
         );
 
-        JS_Cantidad_de_galones.setModel(new javax.swing.SpinnerNumberModel(0.0d, null, null, 1.0d));
+        JS_Cantidad_de_galones.setModel(new javax.swing.SpinnerNumberModel());
 
         jLabel19.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel19.setText("Cantidad de galones: ");
@@ -942,111 +952,133 @@ public class JF_Examen2 extends javax.swing.JFrame {
 
     private void JMI_CrudBateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMI_CrudBateriaActionPerformed
         // TODO add your handling code here:
+        Administrar_Bateria ab
+                = new Administrar_Bateria("./baterias.sana");
+        ab.escribirArchivo();
+        DefaultTableModel modelo1 = (DefaultTableModel) JT_ListarBateria.getModel();
+        modelo1.setNumRows(0);
+        JT_ListarBateria.setModel(modelo1);
+        for (int i = 0; i < ab.getListaBatria().size(); i++) {
+            Object[] o = {ab.getListaBatria().get(i).getMarca(), 
+                ab.getListaBatria().get(i).getCapacidad(), 
+                ab.getListaBatria().get(i).getTipo_Vehiculo(),
+                ab.getListaBatria().get(i).getTiempo(), 
+                ab.getListaBatria().get(i).getAutonomia(), 
+                ab.getListaBatria().get(i).getCapacidad_carga()
+            };
+            modelo1.addRow(o);
+        }
+        JT_ListarBateria.setModel(modelo1);
         CRUDBATERIA();
     }//GEN-LAST:event_JMI_CrudBateriaActionPerformed
 
     private void JMI_SimulacionHiloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMI_SimulacionHiloActionPerformed
+        rep = "";
+        DefaultListModel modelo = (DefaultListModel) JL_VehiculosEnsamblados.getModel();
+        Administrar_Vehiculos av
+                = new Administrar_Vehiculos("./vehiculos.sana");
+        av.cargarArchivo();
+        modelo.removeAllElements();
+        JL_VehiculosEnsamblados.setModel(modelo);
+        for (int i = 0; i < av.getListaVehiculos().size(); i++) {
+            modelo.addElement(av.getListaVehiculos().get(i));
+        }
+        JL_VehiculosEnsamblados.setModel(modelo);
+        System.out.println(modelo);
+
+        DefaultListModel model = (DefaultListModel) JL_BateriaEnsamblaje.getModel();
+        Administrar_Bateria ab
+                = new Administrar_Bateria("./baterias.sana");
+        ab.cargarArchivo();
+        model.removeAllElements();
+        JL_BateriaEnsamblaje.setModel(model);
+        for (int i = 0; i < ab.getListaBatria().size(); i++) {
+            model.addElement(ab.getListaBatria().get(i));
+        }//
+        JL_BateriaEnsamblaje.setModel(model);
+        System.out.println(model);
         SIMULACION();
     }//GEN-LAST:event_JMI_SimulacionHiloActionPerformed
 
     private void JB_EsamblarBateriasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JB_EsamblarBateriasMouseClicked
         // TODO add your handling code here:
-        /*DefaultListModel modelo = (DefaultListModel) JL_ComputadorasEnsamblajes.getModel();
-        DefaultListModel modelo2 = (DefaultListModel) JL_TecnicosEnsamblaje.getModel();
-        String computadora = ((Computadora) modelo.getElementAt(JL_ComputadorasEnsamblajes.getSelectedIndex())).getSerie();
-        String tecnico = ((Tecnico) modelo2.getElementAt(JL_TecnicosEnsamblaje.getSelectedIndex())).getNombre();
-        JL_ComputadoraActual.setText(computadora);
-        JL_TecnicoActual.setText(tecnico);
-        SimulacionEnsamblaje();*/
+       int pos = JL_VehiculosEnsamblados.getSelectedIndex();
+        int pos2 = JL_BateriaEnsamblaje.getSelectedIndex();
+        Administrar_Vehiculos av
+                = new Administrar_Vehiculos("./vehiculos.sana");
+        av.cargarArchivo();
+        Administrar_Bateria ab
+                = new Administrar_Bateria("./baterias.sana");
+        ab.cargarArchivo();
+        boolean flag = false;
+        boolean flag2 = false;
+        if (av.getListaVehiculos().get(pos) instanceof Combustion) {
+            JOptionPane.showMessageDialog(JD_MenuSimulacion, "Lo siento, su Tipo de Motor no es Compatible con la bateria, Intento otro Vehiculo");
+        } else {
+            if (av.getListaVehiculos().get(pos) instanceof Electrico) {
+                flag = true;
+                if (ab.getListaBatria().get(pos2).getTipo_Vehiculo().equalsIgnoreCase("Electrico")) {
+                    flag2 = true;
+
+                }//fin del if
+            } else if (av.getListaVehiculos().get(pos) instanceof Hibrido) {
+                flag = true;
+                if (ab.getListaBatria().get(pos2).getTipo_Vehiculo().equalsIgnoreCase("Hibrido")) {
+                    flag2 = true;
+                }//fin del if
+            }//fin de las condiciones 
+
+            if (flag == true && flag2 == true) {
+                DefaultListModel modelo = (DefaultListModel) JL_VehiculosEnsamblados.getModel();
+                DefaultListModel modelo2 = (DefaultListModel) JL_BateriaEnsamblaje.getModel();
+                String  marca= ((Bateria) modelo2.getElementAt(JL_BateriaEnsamblaje.getSelectedIndex())).getMarca();
+                int v = ((Vehiculos) modelo.getElementAt(JL_VehiculosEnsamblados.getSelectedIndex())).getVin();
+                JL_BateriaActual.setText(marca);
+                JL_CarroActual.setText(Integer.toString(v));
+                ENSAMBLEJE();
+            }else{
+                JOptionPane.showMessageDialog(JD_MenuSimulacion, "Su tipo de Bateria No es la misma que el tipo de Carro Seleccione Correctamente los Objetos");
+            }//fin de la condicion
+        }//fin de la condiciones*/
     }//GEN-LAST:event_JB_EsamblarBateriasMouseClicked
 
     private void JB_GenerarReporteEnsamblajeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JB_GenerarReporteEnsamblajeMouseClicked
         // TODO add your handling code here:
-        //me escuchas????
-        /*DefaultTableModel modelo3 = (DefaultTableModel) JT_SimulacionEnsamblaje.getModel();
+        DefaultTableModel modelo3 = (DefaultTableModel) JT_SimulacionEnsamblaje.getModel();
         for (int i = 0; i < JT_SimulacionEnsamblaje.getRowCount(); i++) {
             Object r = modelo3.getValueAt(i, 0);
             Object r1 = modelo3.getValueAt(i, 1);
-            rep += "\nPieza Ensamblada:" + r + " Tiempo: " + r1 + "\n";
+            rep += "\nBateria Ensamblada:" + r + " Tiempo: " + r1 + "\n";
 
         }
         rep += "\n";
-        System.out.println(rep);
-        JFileChooser jfc = new JFileChooser();
-        FileNameExtensionFilter filtro
-        = new FileNameExtensionFilter(
-            "Archivos de texto", "txt");
-        jfc.setFileFilter(filtro);
-        int seleccion = jfc.showSaveDialog(this);
-
-        FileOutputStream fw = null;
-        ObjectOutputStream bw = null;
-        if (seleccion == JFileChooser.APPROVE_OPTION) {
-            try {
-
-                File fichero = null;
-                if (jfc.getFileFilter().getDescription().equals(
-                    "Archivos de texto")) {
-                fichero
-                = new File(jfc.getSelectedFile().getPath() + ".txt");
-            } else {
-                fichero = jfc.getSelectedFile();
-            }
-
-            fw = new FileOutputStream(fichero);
-            bw = new ObjectOutputStream(fw);
-
-            Object f = rep;
-            bw.writeObject(f);
-            bw.flush();
-            //Ya
-
-            JOptionPane.showMessageDialog(JD_MenuEnsamblaje,
-                "Archivo guardado exitosamente");
-
-        } catch (Exception e) {
-            e.printStackTrace();
+        Administrar_Binario ab
+                = new Administrar_Binario("./Ensablados.sana");
+        ab.cargarArchivo();
+        Guardar g=new Guardar(rep);
+        ab.getListaGuardar().add(g);
+        ab.escribirArchivo();
+        JOptionPane.showMessageDialog(JD_MenuSimulacion, "Guardado con exito");
+        String r="";
+        for (int i = 0; i < ab.getListaGuardar().size(); i++) {
+            r+=i+") "+ab.getListaGuardar().get(i)+"\n";
         }
-        }*/
+        JOptionPane.showMessageDialog(JD_MenuSimulacion, "Reporte de ensamblaje actual:\n"+r);
+        modelo3.setNumRows(0);
+        JT_SimulacionEnsamblaje.setModel(modelo3); 
     }//GEN-LAST:event_JB_GenerarReporteEnsamblajeMouseClicked
 
     private void JB_IniciarEsamblajeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JB_IniciarEsamblajeMouseClicked
         // TODO add your handling code here:
-
-        /*DefaultListModel modelo = (DefaultListModel) JL_ComputadorasEnsamblajes.getModel();
+        DefaultListModel modelo = (DefaultListModel) JL_BateriaEnsamblaje.getModel();
         DefaultTableModel m = (DefaultTableModel) JT_SimulacionEnsamblaje.getModel();
-        DefaultListModel n = (DefaultListModel) JL_TecnicosEnsamblaje.getModel();
-        Tecnico t = ((Tecnico) n.getElementAt(JL_TecnicosEnsamblaje.getSelectedIndex()));
-        t.setCantidad_computadoras(t.getCantidad_computadoras() + 1);
-        Computadora c = ((Computadora) modelo.getElementAt(JL_ComputadorasEnsamblajes.getSelectedIndex()));
-        adminBarra ab = new adminBarra(PB_Ensamblaje, c, JT_SimulacionEnsamblaje);
+        DefaultListModel n = (DefaultListModel) JL_VehiculosEnsamblados.getModel();
+        Vehiculos v = ((Vehiculos) n.getElementAt(JL_VehiculosEnsamblados.getSelectedIndex()));
+        Bateria b = ((Bateria) modelo.getElementAt(JL_BateriaEnsamblaje.getSelectedIndex()));
+        Adminstrar_Barra ab = new Adminstrar_Barra(PB_Ensamblaje, b, JT_SimulacionEnsamblaje);
         ab.start();
-        ab.Tabla();
-        int s;
-        if (t.getCantidad_computadoras() < 6) {
-            s = 1 + ta.nextInt(100);
-            if (s > 0 && s < 31) {
-                JOptionPane.showMessageDialog(JD_MenuEnsamblaje, "Ha ocurrido un error de ensamble");
-            }//fin del if
-        }//fin de la condicion
-        else if (t.getCantidad_computadoras() >= 6 && t.getCantidad_computadoras() < 15) {
-            s = 1 + ta.nextInt(100);
-            if (s > 0 && s < 22) {
-                JOptionPane.showMessageDialog(JD_MenuEnsamblaje, "Ha ocurrido un error de ensamble");
-            }//fin del if
-        }//fin del condicion
-        else if (t.getCantidad_computadoras() >= 15 && t.getCantidad_computadoras() < 31) {
-            s = 1 + ta.nextInt(100);
-            if (s > 0 && s < 13) {
-                JOptionPane.showMessageDialog(JD_MenuEnsamblaje, "Ha ocurrido un error de ensamble");
-            }
-        } else if (t.getCantidad_computadoras() >= 31) {
-            s = 1 + ta.nextInt(100);
-            if (s > 0 && s < 7) {
-                JOptionPane.showMessageDialog(JD_MenuEnsamblaje, "Ha ocurrido un error de ensamble");
-            }
-        }
-        */
+        JOptionPane.showMessageDialog(JD_Ensamblaje, "Esamblado con Exito");
+        
     }//GEN-LAST:event_JB_IniciarEsamblajeMouseClicked
 
     private void JB_BuscarMotorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JB_BuscarMotorMouseClicked
@@ -1091,6 +1123,7 @@ public class JF_Examen2 extends javax.swing.JFrame {
         CB_TipoCarroce.setSelectedIndex(0);
         CB_TipoMotor.setSelectedIndex(0);
         JD_Combustion.setVisible(false);
+        JOptionPane.showMessageDialog(JD_CRUDVehiculos,"Computadora Agregar Exitosamente ");
     }//GEN-LAST:event_JB_AgregarVehiculosMouseClicked
 
     private void JB_AgregarVehiculos1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JB_AgregarVehiculos1MouseClicked
@@ -1117,6 +1150,7 @@ public class JF_Examen2 extends javax.swing.JFrame {
         CB_TipoCarroce.setSelectedIndex(0);
         CB_TipoMotor.setSelectedIndex(0);
         JD_Hibrido.setVisible(false);
+        JOptionPane.showMessageDialog(JD_CRUDVehiculos,"Computadora Agregar Exitosamente ");
     }//GEN-LAST:event_JB_AgregarVehiculos1MouseClicked
 
     private void JB_AgregarVehiculos2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JB_AgregarVehiculos2MouseClicked
@@ -1143,6 +1177,7 @@ public class JF_Examen2 extends javax.swing.JFrame {
         CB_TipoCarroce.setSelectedIndex(0);
         CB_TipoMotor.setSelectedIndex(0);
         JD_Electrico.setVisible(false);
+        JOptionPane.showMessageDialog(JD_CRUDVehiculos,"Computadora Agregar Exitosamente ");
     }//GEN-LAST:event_JB_AgregarVehiculos2MouseClicked
 
     private void JB_ModificarVehiculoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JB_ModificarVehiculoMouseClicked
@@ -1213,16 +1248,16 @@ public class JF_Examen2 extends javax.swing.JFrame {
         // TODO add your handling code here:
         Administrar_Bateria ab
                 = new Administrar_Bateria("./baterias.sana");
-        ab.escribirArchivo();
+        ab.cargarArchivo();
         String t="";
         Object o= CB_Vehiculo.getSelectedItem();
         t+=o;
         Bateria b= new Bateria(TF_Marca1.getText(),(Integer)JS_Capacidad.getValue(),(Integer)JS_Autonomia.getValue(),(Integer)JS_Modulos.getValue(),(Integer)JS_Carga.getValue(),t,(Integer)JS_Tiempo.getValue());
         ab.getListaBatria().add(b);
-        DefaultTableModel modelo =(DefaultTableModel)JT_ListarCarros1.getModel();
+        DefaultTableModel modelo =(DefaultTableModel)JT_ListarBateria.getModel();
         Object[]o1={TF_Marca1.getText(),(Integer)JS_Capacidad.getValue(),t,(Integer)JS_Tiempo.getValue(),(Integer)JS_Autonomia.getValue(),(Integer)JS_Carga.getValue()};
         modelo.addRow(o1);
-        JT_ListarCarros1.setModel(modelo);
+        JT_ListarBateria.setModel(modelo);
         ab.escribirArchivo();
         TF_Marca1.setText("");
         JS_Capacidad.setValue(0);
@@ -1231,11 +1266,53 @@ public class JF_Examen2 extends javax.swing.JFrame {
         JS_Carga.setValue(0);
         CB_Vehiculo.setSelectedIndex(0);
         JS_Tiempo.setValue(0);
+         JOptionPane.showMessageDialog(JD_CRUDBateria, "Bateria Agregada Exitosamente ");
     }//GEN-LAST:event_JB_BateriaMouseClicked
 
-    private void JB_ModificarCarro1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JB_ModificarCarro1MouseClicked
+    private void JB_ModificarBateriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JB_ModificarBateriaMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_JB_ModificarCarro1MouseClicked
+        Administrar_Bateria ab
+                = new Administrar_Bateria("./baterias.sana");
+        ab.cargarArchivo();
+        int p = JT_ListarBateria.getSelectedRow();
+        ab.getListaBatria().get(p).setMarca(JOptionPane.showInputDialog("Marca de las Baterias: "));
+        ab.getListaBatria().get(p).setTipo_Vehiculo(JOptionPane.showInputDialog("Tipo de Carroceria: "));
+        ab.getListaBatria().get(p).setAutonomia(Integer.parseInt(JOptionPane.showInputDialog("Autonomia[KM]: ")));
+        ab.getListaBatria().get(p).setCapacidad(Integer.parseInt(JOptionPane.showInputDialog("Capacidad Bateria [Amh/Kw]: ")));
+        ab.getListaBatria().get(p).setCapacidad_carga(Integer.parseInt(JOptionPane.showInputDialog("Capacidad Carga[KG]: ")));
+        ab.getListaBatria().get(p).setCapapcidad_modulos(Integer.parseInt(JOptionPane.showInputDialog("Cantidad de Modulos: ")));
+        ab.getListaBatria().get(p).setTiempo(Integer.parseInt(JOptionPane.showInputDialog("Tiempo de Ensamblaje: ")));
+        ab.escribirArchivo();
+        DefaultTableModel modelo1 = (DefaultTableModel) JT_ListarBateria.getModel();
+        modelo1.setNumRows(0);
+        JT_ListarBateria.setModel(modelo1);
+        for (int i = 0; i < ab.getListaBatria().size(); i++) {
+            Object[] o = {ab.getListaBatria().get(i).getMarca(), 
+                ab.getListaBatria().get(i).getCapacidad(), 
+                ab.getListaBatria().get(i).getTipo_Vehiculo(),
+                ab.getListaBatria().get(i).getTiempo(), 
+                ab.getListaBatria().get(i).getAutonomia(), 
+                ab.getListaBatria().get(i).getCapacidad_carga()
+            };
+            modelo1.addRow(o);
+        }
+        JT_ListarBateria.setModel(modelo1);
+        JOptionPane.showMessageDialog(JD_CRUDBateria, "Bateria Modficada Exitosamente ");
+    }//GEN-LAST:event_JB_ModificarBateriaMouseClicked
+
+    private void JB_EliminarCarros1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JB_EliminarCarros1MouseClicked
+        // TODO add your handling code here:
+        DefaultTableModel modelo1 = (DefaultTableModel) JT_ListarBateria.getModel();
+        Administrar_Bateria ab
+                = new Administrar_Bateria("./baterias.sana");
+        ab.cargarArchivo();
+        int p = JT_ListarBateria.getSelectedRow();
+        ab.getListaBatria().remove(p);
+        ab.escribirArchivo();
+        modelo1.removeRow(p);
+        JT_ListarBateria.setModel(modelo1);
+        JOptionPane.showMessageDialog(JD_CRUDBateria, "Tecnico Modficado Exitosamente ");
+    }//GEN-LAST:event_JB_EliminarCarros1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -1328,7 +1405,7 @@ public class JF_Examen2 extends javax.swing.JFrame {
     private javax.swing.JButton JB_EsamblarBaterias;
     private javax.swing.JButton JB_GenerarReporteEnsamblaje;
     private javax.swing.JButton JB_IniciarEsamblaje;
-    private javax.swing.JButton JB_ModificarCarro1;
+    private javax.swing.JButton JB_ModificarBateria;
     private javax.swing.JButton JB_ModificarVehiculo;
     private javax.swing.JDialog JD_CRUDBateria;
     private javax.swing.JDialog JD_CRUDVehiculos;
@@ -1340,7 +1417,7 @@ public class JF_Examen2 extends javax.swing.JFrame {
     private javax.swing.JLabel JL_BateriaActual;
     private javax.swing.JList<String> JL_BateriaEnsamblaje;
     private javax.swing.JLabel JL_CarroActual;
-    private javax.swing.JList<String> JL_CarrosEnsamblados;
+    private javax.swing.JList<String> JL_VehiculosEnsamblados;
     private javax.swing.JMenuItem JMI_CrudBateria;
     private javax.swing.JMenuItem JMI_CrudVehiculos;
     private javax.swing.JMenuItem JMI_SimulacionHilo;
@@ -1359,7 +1436,7 @@ public class JF_Examen2 extends javax.swing.JFrame {
     private javax.swing.JSpinner JS_NumMotores;
     private javax.swing.JSpinner JS_Recarga;
     private javax.swing.JSpinner JS_Tiempo;
-    private javax.swing.JTable JT_ListarCarros1;
+    private javax.swing.JTable JT_ListarBateria;
     private javax.swing.JTable JT_ListarVehiculos;
     private javax.swing.JTable JT_SimulacionEnsamblaje;
     private javax.swing.JProgressBar PB_Ensamblaje;
@@ -1413,4 +1490,5 @@ public class JF_Examen2 extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     // End of variables declaration//GEN-END:variables
+String rep;
 }
