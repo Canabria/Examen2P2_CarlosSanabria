@@ -7,6 +7,7 @@ package examen2p2_carlossanabria;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -34,7 +35,11 @@ public class JF_Examen2 extends javax.swing.JFrame {
         modelo2.addElement("Hibrido");
         modelo2.addElement("Electrico");
         CB_TipoMotor.setModel(modelo2);
-        
+        DefaultComboBoxModel modelo3= (DefaultComboBoxModel)CB_Vehiculo.getModel();
+        modelo2.addElement("Default");
+        modelo2.addElement("Hibrido");
+        modelo2.addElement("Electrico");
+        CB_Vehiculo.setModel(modelo3);
     }
 
     /**
@@ -49,9 +54,9 @@ public class JF_Examen2 extends javax.swing.JFrame {
         JD_CRUDVehiculos = new javax.swing.JDialog();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        JT_ListarCarros = new javax.swing.JTable();
-        JB_ModificarCarro = new javax.swing.JButton();
-        JB_EliminarCarros = new javax.swing.JButton();
+        JT_ListarVehiculos = new javax.swing.JTable();
+        JB_ModificarVehiculo = new javax.swing.JButton();
+        JB_EliminarVehiculos = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         TF_Marca = new javax.swing.JTextField();
@@ -71,6 +76,21 @@ public class JF_Examen2 extends javax.swing.JFrame {
         JB_ModificarCarro1 = new javax.swing.JButton();
         JB_EliminarCarros1 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
+        jLabel30 = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
+        jLabel32 = new javax.swing.JLabel();
+        jLabel33 = new javax.swing.JLabel();
+        jLabel34 = new javax.swing.JLabel();
+        TF_Marca1 = new javax.swing.JTextField();
+        JS_Capacidad = new javax.swing.JSpinner();
+        JS_Autonomia = new javax.swing.JSpinner();
+        JS_Modulos = new javax.swing.JSpinner();
+        JS_Carga = new javax.swing.JSpinner();
+        CB_Vehiculo = new javax.swing.JComboBox<>();
+        JS_Tiempo = new javax.swing.JSpinner();
+        JB_Bateria = new javax.swing.JButton();
         JD_MenuSimulacion = new javax.swing.JDialog();
         JB_EsamblarBaterias = new javax.swing.JButton();
         JB_GenerarReporteEnsamblaje = new javax.swing.JButton();
@@ -132,7 +152,7 @@ public class JF_Examen2 extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         jLabel3.setText("Administracion Vehiculos");
 
-        JT_ListarCarros.setModel(new javax.swing.table.DefaultTableModel(
+        JT_ListarVehiculos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -148,11 +168,21 @@ public class JF_Examen2 extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane3.setViewportView(JT_ListarCarros);
+        jScrollPane3.setViewportView(JT_ListarVehiculos);
 
-        JB_ModificarCarro.setText("Modificar");
+        JB_ModificarVehiculo.setText("Modificar");
+        JB_ModificarVehiculo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JB_ModificarVehiculoMouseClicked(evt);
+            }
+        });
 
-        JB_EliminarCarros.setText("Eliminar");
+        JB_EliminarVehiculos.setText("Eliminar");
+        JB_EliminarVehiculos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JB_EliminarVehiculosMouseClicked(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel4.setText("Listar Vehiculos");
@@ -219,9 +249,9 @@ public class JF_Examen2 extends javax.swing.JFrame {
                 .addGroup(JD_CRUDVehiculosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addGroup(JD_CRUDVehiculosLayout.createSequentialGroup()
-                        .addComponent(JB_ModificarCarro)
+                        .addComponent(JB_ModificarVehiculo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(JB_EliminarCarros))
+                        .addComponent(JB_EliminarVehiculos))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 641, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(38, 38, 38))
         );
@@ -259,12 +289,12 @@ public class JF_Examen2 extends javax.swing.JFrame {
                         .addComponent(JB_BuscarMotor)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(JD_CRUDVehiculosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JB_EliminarCarros)
-                    .addComponent(JB_ModificarCarro))
+                    .addComponent(JB_EliminarVehiculos)
+                    .addComponent(JB_ModificarVehiculo))
                 .addGap(55, 55, 55))
         );
 
-        jLabel5.setFont(new java.awt.Font("Times New Roman", 3, 36)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         jLabel5.setText("Administracion Baterias");
 
         JT_ListarCarros1.setModel(new javax.swing.table.DefaultTableModel(
@@ -286,11 +316,44 @@ public class JF_Examen2 extends javax.swing.JFrame {
         jScrollPane4.setViewportView(JT_ListarCarros1);
 
         JB_ModificarCarro1.setText("Modificar");
+        JB_ModificarCarro1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JB_ModificarCarro1MouseClicked(evt);
+            }
+        });
 
         JB_EliminarCarros1.setText("Eliminar");
 
-        jLabel6.setFont(new java.awt.Font("Times New Roman", 3, 18)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel6.setText("Listar Bateria");
+
+        jLabel26.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel26.setText("Marca: ");
+
+        jLabel27.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel27.setText("Capacidad: ");
+
+        jLabel30.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel30.setText("Autonomia: ");
+
+        jLabel31.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel31.setText("Cantidad Modulos: ");
+
+        jLabel32.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel32.setText("Tipo Vehiculo: ");
+
+        jLabel33.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel33.setText("Capacidad Carga: ");
+
+        jLabel34.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel34.setText("Tiempo: ");
+
+        JB_Bateria.setText("Agregar Bateria");
+        JB_Bateria.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JB_BateriaMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout JD_CRUDBateriaLayout = new javax.swing.GroupLayout(JD_CRUDBateria.getContentPane());
         JD_CRUDBateria.getContentPane().setLayout(JD_CRUDBateriaLayout);
@@ -299,9 +362,46 @@ public class JF_Examen2 extends javax.swing.JFrame {
             .addGroup(JD_CRUDBateriaLayout.createSequentialGroup()
                 .addGap(340, 340, 340)
                 .addComponent(jLabel5)
-                .addContainerGap(505, Short.MAX_VALUE))
+                .addContainerGap(497, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JD_CRUDBateriaLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(JD_CRUDBateriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(JD_CRUDBateriaLayout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addGroup(JD_CRUDBateriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(JD_CRUDBateriaLayout.createSequentialGroup()
+                                .addComponent(jLabel26)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(TF_Marca1, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(JD_CRUDBateriaLayout.createSequentialGroup()
+                                .addComponent(jLabel27)
+                                .addGap(18, 18, 18)
+                                .addComponent(JS_Capacidad, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(JD_CRUDBateriaLayout.createSequentialGroup()
+                                .addComponent(jLabel30)
+                                .addGap(18, 18, 18)
+                                .addComponent(JS_Autonomia, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(JD_CRUDBateriaLayout.createSequentialGroup()
+                                .addComponent(jLabel31)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(JS_Modulos, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(JD_CRUDBateriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, JD_CRUDBateriaLayout.createSequentialGroup()
+                                    .addComponent(jLabel34)
+                                    .addGap(94, 94, 94)
+                                    .addComponent(JS_Tiempo, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, JD_CRUDBateriaLayout.createSequentialGroup()
+                                    .addGroup(JD_CRUDBateriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel33)
+                                        .addComponent(jLabel32))
+                                    .addGap(18, 18, 18)
+                                    .addGroup(JD_CRUDBateriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(JS_Carga, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
+                                        .addComponent(CB_Vehiculo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                        .addGap(142, 142, 142))
+                    .addGroup(JD_CRUDBateriaLayout.createSequentialGroup()
+                        .addGap(157, 157, 157)
+                        .addComponent(JB_Bateria, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(JD_CRUDBateriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
                     .addGroup(JD_CRUDBateriaLayout.createSequentialGroup()
@@ -319,7 +419,38 @@ public class JF_Examen2 extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(JD_CRUDBateriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(JD_CRUDBateriaLayout.createSequentialGroup()
+                        .addGroup(JD_CRUDBateriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel26)
+                            .addComponent(TF_Marca1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(16, 16, 16)
+                        .addGroup(JD_CRUDBateriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel27)
+                            .addComponent(JS_Capacidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(15, 15, 15)
+                        .addGroup(JD_CRUDBateriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel30)
+                            .addComponent(JS_Autonomia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(17, 17, 17)
+                        .addGroup(JD_CRUDBateriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel31)
+                            .addComponent(JS_Modulos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(25, 25, 25)
+                        .addGroup(JD_CRUDBateriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel33)
+                            .addComponent(JS_Carga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(JD_CRUDBateriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel32)
+                            .addComponent(CB_Vehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(15, 15, 15)
+                        .addGroup(JD_CRUDBateriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel34)
+                            .addComponent(JS_Tiempo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(30, 30, 30)
+                        .addComponent(JB_Bateria)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(JD_CRUDBateriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JB_EliminarCarros1)
@@ -792,6 +923,20 @@ public class JF_Examen2 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JMI_CrudVehiculosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMI_CrudVehiculosActionPerformed
+        Administrar_Vehiculos av
+                = new Administrar_Vehiculos("./vehiculos.sana");
+        av.cargarArchivo();
+        DefaultTableModel modelo1 = (DefaultTableModel) JT_ListarVehiculos.getModel();
+        modelo1.setNumRows(0);
+        JT_ListarVehiculos.setModel(modelo1);
+        for (int i = 0; i < av.getListaVehiculos().size(); i++) {
+            Object[] o = {av.getListaVehiculos().get(i).getMarca(),
+                av.getListaVehiculos().get(i).getVin(),
+                av.getListaVehiculos().get(i).getModelo(),
+                av.getListaVehiculos().get(i).getCarroceria()};
+            modelo1.addRow(o);
+        }
+        JT_ListarVehiculos.setModel(modelo1);
         CRUDVEHICULO();
     }//GEN-LAST:event_JMI_CrudVehiculosActionPerformed
 
@@ -925,7 +1070,7 @@ public class JF_Examen2 extends javax.swing.JFrame {
     private void JB_AgregarVehiculosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JB_AgregarVehiculosMouseClicked
         // TODO add your handling code here:
         Administrar_Vehiculos av
-                = new Administrar_Vehiculos("./vehículos.sana");
+                = new Administrar_Vehiculos("./vehiculos.sana");
         av.cargarArchivo();
         String t="";
         Object o= CB_TipoCarroce.getSelectedItem();
@@ -933,10 +1078,10 @@ public class JF_Examen2 extends javax.swing.JFrame {
         Combustion c= new Combustion((Integer)JS_Cilidrada.getValue(),(Integer)JS_NumCili.getValue(),(Integer)JS_Consumo.getValue(),TF_Marca.getText(),TF_Modelo.getText(),Integer.parseInt(TF_VIN.getText()),t);
         av.getListaVehiculos().add(c);
         av.escribirArchivo();
-        DefaultTableModel modelo=(DefaultTableModel)JT_ListarCarros.getModel();
+        DefaultTableModel modelo=(DefaultTableModel)JT_ListarVehiculos.getModel();
         Object[]o1={TF_Marca.getText(),TF_Modelo.getText(),Integer.parseInt(TF_VIN.getText()),t};
         modelo.addRow(o1);
-        JT_ListarCarros.setModel(modelo);
+        JT_ListarVehiculos.setModel(modelo);
         JS_Cilidrada.setValue(0);
         JS_NumCili.setValue(3);
         JS_Consumo.setValue(0);
@@ -951,18 +1096,18 @@ public class JF_Examen2 extends javax.swing.JFrame {
     private void JB_AgregarVehiculos1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JB_AgregarVehiculos1MouseClicked
         // TODO add your handling code here:
         Administrar_Vehiculos av
-                = new Administrar_Vehiculos("./vehículos.sana");
+                = new Administrar_Vehiculos("./vehiculos.sana");
         av.cargarArchivo();
         String t="";
         Object o= CB_TipoCarroce.getSelectedItem();
         t+=o;
-        Hibrido h= new Hibrido((Integer)JS_Capacidad_m.getValue(),(Integer)JS_Cantidad_de_galones.getValue(),Integer.parseInt(TF_Precio.getText()),TF_Marca.getText(),TF_Modelo.getText(),Integer.parseInt(TF_VIN.getText()),t);
+        Hibrido h= new Hibrido((Integer)JS_Capacidad_m.getValue(),(Integer)JS_Cantidad_de_galones.getValue(),Double.parseDouble(TF_Precio.getText()),TF_Marca.getText(),TF_Modelo.getText(),Integer.parseInt(TF_VIN.getText()),t);
         av.getListaVehiculos().add(h);
         av.escribirArchivo();
-        DefaultTableModel modelo=(DefaultTableModel)JT_ListarCarros.getModel();
+        DefaultTableModel modelo=(DefaultTableModel)JT_ListarVehiculos.getModel();
         Object[]o1={TF_Marca.getText(),TF_Modelo.getText(),Integer.parseInt(TF_VIN.getText()),t};
         modelo.addRow(o1);
-        JT_ListarCarros.setModel(modelo);
+        JT_ListarVehiculos.setModel(modelo);
         JS_Capacidad_m.setValue(0);
         JS_Cantidad_de_galones.setValue(0);
         TF_Precio.setText("");
@@ -971,13 +1116,13 @@ public class JF_Examen2 extends javax.swing.JFrame {
         TF_VIN.setText("");
         CB_TipoCarroce.setSelectedIndex(0);
         CB_TipoMotor.setSelectedIndex(0);
-        JD_Combustion.setVisible(false);
+        JD_Hibrido.setVisible(false);
     }//GEN-LAST:event_JB_AgregarVehiculos1MouseClicked
 
     private void JB_AgregarVehiculos2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JB_AgregarVehiculos2MouseClicked
         // TODO add your handling code here:
         Administrar_Vehiculos av
-                = new Administrar_Vehiculos("./vehículos.sana");
+                = new Administrar_Vehiculos("./vehiculos.sana");
         av.cargarArchivo();
         String t="";
         Object o= CB_TipoCarroce.getSelectedItem();
@@ -985,10 +1130,10 @@ public class JF_Examen2 extends javax.swing.JFrame {
         Electrico h= new Electrico((Integer)JS_Coeficiente.getValue(),(Integer)JS_NumMotores.getValue(),(Integer)JS_Recarga.getValue(),TF_Marca.getText(),TF_Modelo.getText(),Integer.parseInt(TF_VIN.getText()),t);
         av.getListaVehiculos().add(h);
         av.escribirArchivo();
-        DefaultTableModel modelo=(DefaultTableModel)JT_ListarCarros.getModel();
+        DefaultTableModel modelo=(DefaultTableModel)JT_ListarVehiculos.getModel();
         Object[]o1={TF_Marca.getText(),TF_Modelo.getText(),Integer.parseInt(TF_VIN.getText()),t};
         modelo.addRow(o1);
-        JT_ListarCarros.setModel(modelo);
+        JT_ListarVehiculos.setModel(modelo);
         JS_Coeficiente.setValue(0);
         JS_NumMotores.setValue(0);
         JS_Recarga.setValue(0);
@@ -997,8 +1142,100 @@ public class JF_Examen2 extends javax.swing.JFrame {
         TF_VIN.setText("");
         CB_TipoCarroce.setSelectedIndex(0);
         CB_TipoMotor.setSelectedIndex(0);
-        JD_Combustion.setVisible(false);
+        JD_Electrico.setVisible(false);
     }//GEN-LAST:event_JB_AgregarVehiculos2MouseClicked
+
+    private void JB_ModificarVehiculoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JB_ModificarVehiculoMouseClicked
+        // TODO add your handling code here:
+         Administrar_Vehiculos av
+                = new Administrar_Vehiculos("./vehiculos.sana");
+        av.cargarArchivo();
+        int p = JT_ListarVehiculos.getSelectedRow();
+        if (av.getListaVehiculos().get(p) instanceof Combustion) {
+            av.getListaVehiculos().get(p).setVin(Integer.parseInt(JOptionPane.showInputDialog("VIN del Carro: ")));
+            av.getListaVehiculos().get(p).setMarca(JOptionPane.showInputDialog("Marca del Carro: "));
+            av.getListaVehiculos().get(p).setModelo(JOptionPane.showInputDialog("Modelo del Carro: "));
+            av.getListaVehiculos().get(p).setCarroceria(JOptionPane.showInputDialog("Tipo Carroceria del Carro\n"
+                    + "[Familiar/SUV/Compacto/Subcompacto/deportivo]: "));
+            ((Combustion)av.getListaVehiculos().get(p)).setCilindraje(Integer.parseInt(JOptionPane.showInputDialog("Cilindraje del Motor[en Litros]: ")));
+            ((Combustion)av.getListaVehiculos().get(p)).setCant_cilin(Integer.parseInt(JOptionPane.showInputDialog("Cantidad de Cilindros: ")));
+            ((Combustion)av.getListaVehiculos().get(p)).setConsumo(Integer.parseInt(JOptionPane.showInputDialog("Cantidad de Conusmo[L/KM]: ")));
+        } else if (av.getListaVehiculos().get(p) instanceof Electrico) {
+            av.getListaVehiculos().get(p).setVin(Integer.parseInt(JOptionPane.showInputDialog("VIN del Carro: ")));
+            av.getListaVehiculos().get(p).setMarca(JOptionPane.showInputDialog("Marca del Carro: "));
+            av.getListaVehiculos().get(p).setModelo(JOptionPane.showInputDialog("Modelo del Carro: "));
+            av.getListaVehiculos().get(p).setCarroceria(JOptionPane.showInputDialog("Tipo Carroceria del Carro\n"
+                    + "[Familiar/SUV/Compacto/Subcompacto/deportivo]: "));
+            ((Electrico)av.getListaVehiculos().get(p)).setCoeficiente(Integer.parseInt(JOptionPane.showInputDialog("Coeficiente Aerodinamico: ")));
+            ((Electrico)av.getListaVehiculos().get(p)).setCanti_motor(Integer.parseInt(JOptionPane.showInputDialog("Cantidad de Motores: ")));
+            ((Electrico)av.getListaVehiculos().get(p)).setTiempo_recarga(Integer.parseInt(JOptionPane.showInputDialog("Tiempo de Recarga: ")));
+            
+        } else if (av.getListaVehiculos().get(p) instanceof Hibrido) {
+            av.getListaVehiculos().get(p).setVin(Integer.parseInt(JOptionPane.showInputDialog("VIN del Carro: ")));
+            av.getListaVehiculos().get(p).setMarca(JOptionPane.showInputDialog("Marca del Carro: "));
+            av.getListaVehiculos().get(p).setModelo(JOptionPane.showInputDialog("Modelo del Carro: "));
+            av.getListaVehiculos().get(p).setCarroceria(JOptionPane.showInputDialog("Tipo Carroceria del Carro\n"
+                    + "[Familiar/SUV/Compacto/Subcompacto/deportivo]: "));
+            ((Hibrido)av.getListaVehiculos().get(p)).setCantidad_de_galones(Integer.parseInt(JOptionPane.showInputDialog("Cantidad de Galones: ")));
+            ((Hibrido)av.getListaVehiculos().get(p)).setCapaci_m(Integer.parseInt(JOptionPane.showInputDialog("Capacidad del Motor: ")));
+            ((Hibrido)av.getListaVehiculos().get(p)).setPrecio(Double.parseDouble(JOptionPane.showInputDialog("Precio: ")));
+        }//fin de las condiciones
+        DefaultTableModel modelo1 = (DefaultTableModel) JT_ListarVehiculos.getModel();
+        av.escribirArchivo();
+        modelo1.setNumRows(0);
+        JT_ListarVehiculos.setModel(modelo1);
+        for (int i = 0; i < av.getListaVehiculos().size(); i++) {
+            Object[] o = {av.getListaVehiculos().get(i).getMarca(),
+                av.getListaVehiculos().get(i).getVin(),
+                av.getListaVehiculos().get(i).getModelo(),
+                av.getListaVehiculos().get(i).getCarroceria()};
+            modelo1.addRow(o);
+        }
+        JT_ListarVehiculos.setModel(modelo1);
+        JOptionPane.showMessageDialog(JD_CRUDVehiculos, "Carro Modficado Exitosamente ");
+    }//GEN-LAST:event_JB_ModificarVehiculoMouseClicked
+
+    private void JB_EliminarVehiculosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JB_EliminarVehiculosMouseClicked
+        // TODO add your handling code here:
+        Administrar_Vehiculos av
+                = new Administrar_Vehiculos("./vehiculos.sana");
+        av.cargarArchivo();
+        int p = JT_ListarVehiculos.getSelectedRow();
+        av.getListaVehiculos().remove(p);
+        av.escribirArchivo();
+        DefaultTableModel modelo1 = (DefaultTableModel) JT_ListarVehiculos.getModel();
+        modelo1.removeRow(p);
+        JT_ListarVehiculos.setModel(modelo1);
+        JOptionPane.showMessageDialog(JD_CRUDVehiculos,"Computadora Eliminada Exitosamente ");
+    }//GEN-LAST:event_JB_EliminarVehiculosMouseClicked
+
+    private void JB_BateriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JB_BateriaMouseClicked
+        // TODO add your handling code here:
+        Administrar_Bateria ab
+                = new Administrar_Bateria("./baterias.sana");
+        ab.escribirArchivo();
+        String t="";
+        Object o= CB_Vehiculo.getSelectedItem();
+        t+=o;
+        Bateria b= new Bateria(TF_Marca1.getText(),(Integer)JS_Capacidad.getValue(),(Integer)JS_Autonomia.getValue(),(Integer)JS_Modulos.getValue(),(Integer)JS_Carga.getValue(),t,(Integer)JS_Tiempo.getValue());
+        ab.getListaBatria().add(b);
+        DefaultTableModel modelo =(DefaultTableModel)JT_ListarCarros1.getModel();
+        Object[]o1={TF_Marca1.getText(),(Integer)JS_Capacidad.getValue(),t,(Integer)JS_Tiempo.getValue(),(Integer)JS_Autonomia.getValue(),(Integer)JS_Carga.getValue()};
+        modelo.addRow(o1);
+        JT_ListarCarros1.setModel(modelo);
+        ab.escribirArchivo();
+        TF_Marca1.setText("");
+        JS_Capacidad.setValue(0);
+        JS_Autonomia.setValue(0);
+        JS_Modulos.setValue(0);
+        JS_Carga.setValue(0);
+        CB_Vehiculo.setSelectedIndex(0);
+        JS_Tiempo.setValue(0);
+    }//GEN-LAST:event_JB_BateriaMouseClicked
+
+    private void JB_ModificarCarro1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JB_ModificarCarro1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JB_ModificarCarro1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -1080,17 +1317,19 @@ public class JF_Examen2 extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> CB_TipoCarroce;
     private javax.swing.JComboBox<String> CB_TipoMotor;
+    private javax.swing.JComboBox<String> CB_Vehiculo;
     private javax.swing.JButton JB_AgregarVehiculos;
     private javax.swing.JButton JB_AgregarVehiculos1;
     private javax.swing.JButton JB_AgregarVehiculos2;
+    private javax.swing.JButton JB_Bateria;
     private javax.swing.JButton JB_BuscarMotor;
-    private javax.swing.JButton JB_EliminarCarros;
     private javax.swing.JButton JB_EliminarCarros1;
+    private javax.swing.JButton JB_EliminarVehiculos;
     private javax.swing.JButton JB_EsamblarBaterias;
     private javax.swing.JButton JB_GenerarReporteEnsamblaje;
     private javax.swing.JButton JB_IniciarEsamblaje;
-    private javax.swing.JButton JB_ModificarCarro;
     private javax.swing.JButton JB_ModificarCarro1;
+    private javax.swing.JButton JB_ModificarVehiculo;
     private javax.swing.JDialog JD_CRUDBateria;
     private javax.swing.JDialog JD_CRUDVehiculos;
     private javax.swing.JDialog JD_Combustion;
@@ -1107,19 +1346,25 @@ public class JF_Examen2 extends javax.swing.JFrame {
     private javax.swing.JMenuItem JMI_SimulacionHilo;
     private javax.swing.JMenu JM_AdminCarrosBateria;
     private javax.swing.JMenu JM_SimulacionHilo;
+    private javax.swing.JSpinner JS_Autonomia;
     private javax.swing.JSpinner JS_Cantidad_de_galones;
+    private javax.swing.JSpinner JS_Capacidad;
     private javax.swing.JSpinner JS_Capacidad_m;
+    private javax.swing.JSpinner JS_Carga;
     private javax.swing.JSpinner JS_Cilidrada;
     private javax.swing.JSpinner JS_Coeficiente;
     private javax.swing.JSpinner JS_Consumo;
+    private javax.swing.JSpinner JS_Modulos;
     private javax.swing.JSpinner JS_NumCili;
     private javax.swing.JSpinner JS_NumMotores;
     private javax.swing.JSpinner JS_Recarga;
-    private javax.swing.JTable JT_ListarCarros;
+    private javax.swing.JSpinner JS_Tiempo;
     private javax.swing.JTable JT_ListarCarros1;
+    private javax.swing.JTable JT_ListarVehiculos;
     private javax.swing.JTable JT_SimulacionEnsamblaje;
     private javax.swing.JProgressBar PB_Ensamblaje;
     private javax.swing.JTextField TF_Marca;
+    private javax.swing.JTextField TF_Marca1;
     private javax.swing.JTextField TF_Modelo;
     private javax.swing.JTextField TF_Precio;
     private javax.swing.JTextField TF_VIN;
@@ -1142,9 +1387,16 @@ public class JF_Examen2 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel47;
     private javax.swing.JLabel jLabel48;
