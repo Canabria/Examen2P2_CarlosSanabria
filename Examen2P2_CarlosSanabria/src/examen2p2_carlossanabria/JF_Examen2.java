@@ -1077,7 +1077,6 @@ public class JF_Examen2 extends javax.swing.JFrame {
         Bateria b = ((Bateria) modelo.getElementAt(JL_BateriaEnsamblaje.getSelectedIndex()));
         Adminstrar_Barra ab = new Adminstrar_Barra(PB_Ensamblaje, b, JT_SimulacionEnsamblaje);
         ab.start();
-        JOptionPane.showMessageDialog(JD_Ensamblaje, "Esamblado con Exito");
         
     }//GEN-LAST:event_JB_IniciarEsamblajeMouseClicked
 
@@ -1123,7 +1122,7 @@ public class JF_Examen2 extends javax.swing.JFrame {
         CB_TipoCarroce.setSelectedIndex(0);
         CB_TipoMotor.setSelectedIndex(0);
         JD_Combustion.setVisible(false);
-        JOptionPane.showMessageDialog(JD_CRUDVehiculos,"Computadora Agregar Exitosamente ");
+        JOptionPane.showMessageDialog(JD_CRUDVehiculos,"Vehiculo Agregar Exitosamente ");
     }//GEN-LAST:event_JB_AgregarVehiculosMouseClicked
 
     private void JB_AgregarVehiculos1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JB_AgregarVehiculos1MouseClicked
@@ -1150,7 +1149,7 @@ public class JF_Examen2 extends javax.swing.JFrame {
         CB_TipoCarroce.setSelectedIndex(0);
         CB_TipoMotor.setSelectedIndex(0);
         JD_Hibrido.setVisible(false);
-        JOptionPane.showMessageDialog(JD_CRUDVehiculos,"Computadora Agregar Exitosamente ");
+        JOptionPane.showMessageDialog(JD_CRUDVehiculos,"Vehiculo Agregar Exitosamente ");
     }//GEN-LAST:event_JB_AgregarVehiculos1MouseClicked
 
     private void JB_AgregarVehiculos2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JB_AgregarVehiculos2MouseClicked
@@ -1177,7 +1176,7 @@ public class JF_Examen2 extends javax.swing.JFrame {
         CB_TipoCarroce.setSelectedIndex(0);
         CB_TipoMotor.setSelectedIndex(0);
         JD_Electrico.setVisible(false);
-        JOptionPane.showMessageDialog(JD_CRUDVehiculos,"Computadora Agregar Exitosamente ");
+        JOptionPane.showMessageDialog(JD_CRUDVehiculos,"Vehiculo Agregar Exitosamente ");
     }//GEN-LAST:event_JB_AgregarVehiculos2MouseClicked
 
     private void JB_ModificarVehiculoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JB_ModificarVehiculoMouseClicked
@@ -1227,7 +1226,7 @@ public class JF_Examen2 extends javax.swing.JFrame {
             modelo1.addRow(o);
         }
         JT_ListarVehiculos.setModel(modelo1);
-        JOptionPane.showMessageDialog(JD_CRUDVehiculos, "Carro Modficado Exitosamente ");
+        JOptionPane.showMessageDialog(JD_CRUDVehiculos, "Vehiculo Modficado Exitosamente ");
     }//GEN-LAST:event_JB_ModificarVehiculoMouseClicked
 
     private void JB_EliminarVehiculosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JB_EliminarVehiculosMouseClicked
@@ -1241,7 +1240,7 @@ public class JF_Examen2 extends javax.swing.JFrame {
         DefaultTableModel modelo1 = (DefaultTableModel) JT_ListarVehiculos.getModel();
         modelo1.removeRow(p);
         JT_ListarVehiculos.setModel(modelo1);
-        JOptionPane.showMessageDialog(JD_CRUDVehiculos,"Computadora Eliminada Exitosamente ");
+        JOptionPane.showMessageDialog(JD_CRUDVehiculos,"Vehiculo Eliminada Exitosamente ");
     }//GEN-LAST:event_JB_EliminarVehiculosMouseClicked
 
     private void JB_BateriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JB_BateriaMouseClicked
@@ -1311,7 +1310,7 @@ public class JF_Examen2 extends javax.swing.JFrame {
         ab.escribirArchivo();
         modelo1.removeRow(p);
         JT_ListarBateria.setModel(modelo1);
-        JOptionPane.showMessageDialog(JD_CRUDBateria, "Tecnico Modficado Exitosamente ");
+        JOptionPane.showMessageDialog(JD_CRUDBateria, "Bateria Modficada Exitosamente ");
     }//GEN-LAST:event_JB_EliminarCarros1MouseClicked
 
     /**
