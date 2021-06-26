@@ -7,6 +7,7 @@ package examen2p2_carlossanabria;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -512,6 +513,11 @@ public class JF_Examen2 extends javax.swing.JFrame {
         jLabel18.setText("en litros");
 
         JB_AgregarVehiculos.setText("Agregar a Vehiculos");
+        JB_AgregarVehiculos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JB_AgregarVehiculosMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout JD_CombustionLayout = new javax.swing.GroupLayout(JD_Combustion.getContentPane());
         JD_Combustion.getContentPane().setLayout(JD_CombustionLayout);
@@ -588,6 +594,11 @@ public class JF_Examen2 extends javax.swing.JFrame {
         jLabel23.setText("Precio inicial: ");
 
         JB_AgregarVehiculos1.setText("Agregar a Vehiculos");
+        JB_AgregarVehiculos1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JB_AgregarVehiculos1MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout JD_HibridoLayout = new javax.swing.GroupLayout(JD_Hibrido.getContentPane());
         JD_Hibrido.getContentPane().setLayout(JD_HibridoLayout);
@@ -649,6 +660,11 @@ public class JF_Examen2 extends javax.swing.JFrame {
         jLabel25.setText("Numero de motores: ");
 
         JB_AgregarVehiculos2.setText("Agregar a Vehiculos");
+        JB_AgregarVehiculos2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JB_AgregarVehiculos2MouseClicked(evt);
+            }
+        });
 
         jLabel28.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         jLabel28.setText("Motor Electrico");
@@ -905,6 +921,84 @@ public class JF_Examen2 extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_JB_BuscarMotorMouseClicked
+
+    private void JB_AgregarVehiculosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JB_AgregarVehiculosMouseClicked
+        // TODO add your handling code here:
+        Administrar_Vehiculos av
+                = new Administrar_Vehiculos("./vehículos.sana");
+        av.cargarArchivo();
+        String t="";
+        Object o= CB_TipoCarroce.getSelectedItem();
+        t+=o;
+        Combustion c= new Combustion((Integer)JS_Cilidrada.getValue(),(Integer)JS_NumCili.getValue(),(Integer)JS_Consumo.getValue(),TF_Marca.getText(),TF_Modelo.getText(),Integer.parseInt(TF_VIN.getText()),t);
+        av.getListaVehiculos().add(c);
+        av.escribirArchivo();
+        DefaultTableModel modelo=(DefaultTableModel)JT_ListarCarros.getModel();
+        Object[]o1={TF_Marca.getText(),TF_Modelo.getText(),Integer.parseInt(TF_VIN.getText()),t};
+        modelo.addRow(o1);
+        JT_ListarCarros.setModel(modelo);
+        JS_Cilidrada.setValue(0);
+        JS_NumCili.setValue(3);
+        JS_Consumo.setValue(0);
+        TF_Marca.setText("");
+        TF_Modelo.setText("");
+        TF_VIN.setText("");
+        CB_TipoCarroce.setSelectedIndex(0);
+        CB_TipoMotor.setSelectedIndex(0);
+        JD_Combustion.setVisible(false);
+    }//GEN-LAST:event_JB_AgregarVehiculosMouseClicked
+
+    private void JB_AgregarVehiculos1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JB_AgregarVehiculos1MouseClicked
+        // TODO add your handling code here:
+        Administrar_Vehiculos av
+                = new Administrar_Vehiculos("./vehículos.sana");
+        av.cargarArchivo();
+        String t="";
+        Object o= CB_TipoCarroce.getSelectedItem();
+        t+=o;
+        Hibrido h= new Hibrido((Integer)JS_Capacidad_m.getValue(),(Integer)JS_Cantidad_de_galones.getValue(),Integer.parseInt(TF_Precio.getText()),TF_Marca.getText(),TF_Modelo.getText(),Integer.parseInt(TF_VIN.getText()),t);
+        av.getListaVehiculos().add(h);
+        av.escribirArchivo();
+        DefaultTableModel modelo=(DefaultTableModel)JT_ListarCarros.getModel();
+        Object[]o1={TF_Marca.getText(),TF_Modelo.getText(),Integer.parseInt(TF_VIN.getText()),t};
+        modelo.addRow(o1);
+        JT_ListarCarros.setModel(modelo);
+        JS_Capacidad_m.setValue(0);
+        JS_Cantidad_de_galones.setValue(0);
+        TF_Precio.setText("");
+        TF_Marca.setText("");
+        TF_Modelo.setText("");
+        TF_VIN.setText("");
+        CB_TipoCarroce.setSelectedIndex(0);
+        CB_TipoMotor.setSelectedIndex(0);
+        JD_Combustion.setVisible(false);
+    }//GEN-LAST:event_JB_AgregarVehiculos1MouseClicked
+
+    private void JB_AgregarVehiculos2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JB_AgregarVehiculos2MouseClicked
+        // TODO add your handling code here:
+        Administrar_Vehiculos av
+                = new Administrar_Vehiculos("./vehículos.sana");
+        av.cargarArchivo();
+        String t="";
+        Object o= CB_TipoCarroce.getSelectedItem();
+        t+=o;
+        Electrico h= new Electrico((Integer)JS_Coeficiente.getValue(),(Integer)JS_NumMotores.getValue(),(Integer)JS_Recarga.getValue(),TF_Marca.getText(),TF_Modelo.getText(),Integer.parseInt(TF_VIN.getText()),t);
+        av.getListaVehiculos().add(h);
+        av.escribirArchivo();
+        DefaultTableModel modelo=(DefaultTableModel)JT_ListarCarros.getModel();
+        Object[]o1={TF_Marca.getText(),TF_Modelo.getText(),Integer.parseInt(TF_VIN.getText()),t};
+        modelo.addRow(o1);
+        JT_ListarCarros.setModel(modelo);
+        JS_Coeficiente.setValue(0);
+        JS_NumMotores.setValue(0);
+        JS_Recarga.setValue(0);
+        TF_Marca.setText("");
+        TF_Modelo.setText("");
+        TF_VIN.setText("");
+        CB_TipoCarroce.setSelectedIndex(0);
+        CB_TipoMotor.setSelectedIndex(0);
+        JD_Combustion.setVisible(false);
+    }//GEN-LAST:event_JB_AgregarVehiculos2MouseClicked
 
     /**
      * @param args the command line arguments
